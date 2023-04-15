@@ -1,51 +1,37 @@
 export interface Conversion {
   name: string;
-  category: string;
-  from: Unit;
-  to: Unit;
+  conversions: Map<string, Unit>;
 }
 
 export interface Unit {
-  name: string;
   symbol: string;
-  formula: Function;
+  conversions: Map<string, Function>;
 }
 
-export const temperature: Conversion[] = [
-  {
-    name: "Celsius to Fahrenheit",
-    category: "temperature",
-    from: {
-      name: "Celsius",
-      symbol: "°C",
-      formula: (celsius: number) => ((celsius - 32) * 5) / 9,
-    },
-    to: {
-      name: "Fahrenheit",
-      symbol: "°F",
-      formula: (fahrenheit: number) => (fahrenheit * 9) / 5 + 32,
-    },
-  },
-];
+export const celsius = {
+  symbol: "°C",
+  conversions: new Map([
+    ["Fahrenheit", (celsius: number) => (celsius * 9) / 5 + 32],
+    ["Kelvin", (celsius: number) => celsius + 273.15],
+  ]),
+};
 
-export const distance: Conversion[] = [
-  {
-    name: "Feet to Centimeter",
-    category: "temperature",
-    from: {
-      name: "Feet",
-      symbol: "centimeter",
-      formula: (feet: number) => feet * 30.48,
-    },
-    to: {
-      name: "Centimeter",
-      symbol: "cm",
-      formula: (centimeter: number) => centimeter / 30.48,
-    },
-  },
-];
+export const fahrenheit = {
+  symbol: "°F",
+  conversions: new Map([
+    ["Celsius", (fahrenheit: number) => ((fahrenheit - 32) * 5) / 9],
+    ["Kelvin", (fahrenheit: number) => ((fahrenheit - 32) * 5) / 9 + 273.15],
+  ]),
+};
 
-export const conversions = [
-  { name: "Temperature", conversion: temperature },
-  { name: "Distance", conversion: distance },
+export const temperature: Map<string, Unit> = new Map([
+  ["Celsius", celsius],
+  ["Fahrenheit", fahrenheit],
+]);
+
+export const conversions: Conversion[] = [
+  {
+    name: "Temperature",
+    conversions: temperature,
+  },
 ];
