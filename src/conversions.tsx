@@ -11,7 +11,7 @@ export interface Unit {
   formula: Function;
 }
 
-export const conversions: Conversion[] = [
+export const temperature: Conversion[] = [
   {
     name: "Celsius to Fahrenheit",
     category: "temperature",
@@ -27,3 +27,5 @@ export const conversions: Conversion[] = [
     },
   },
 ];
+
+export const conversions = [{ name: "Temperature", ...temperature }];
