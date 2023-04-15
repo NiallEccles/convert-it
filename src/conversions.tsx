@@ -28,4 +28,24 @@ export const temperature: Conversion[] = [
   },
 ];
 
-export const conversions = [{ name: "Temperature", ...temperature }];
+export const distance: Conversion[] = [
+  {
+    name: "Feet to Centimeter",
+    category: "temperature",
+    from: {
+      name: "Feet",
+      symbol: "centimeter",
+      formula: (feet: number) => feet * 30.48,
+    },
+    to: {
+      name: "Centimeter",
+      symbol: "cm",
+      formula: (centimeter: number) => centimeter / 30.48,
+    },
+  },
+];
+
+export const conversions = [
+  { name: "Temperature", conversion: temperature },
+  { name: "Distance", conversion: distance },
+];
