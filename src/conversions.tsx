@@ -1,11 +1,13 @@
 export interface Conversion {
   name: string;
-  conversions: Map<string, Unit>;
+//   conversions: Map<string, Unit>;
+  conversions: Unit[];
 }
 
 export interface Unit {
   symbol: string;
-  conversions: Map<string, Function>;
+  //   conversions: Map<string, Function>;
+  conversions: { name: string; formula: Function }[];
 }
 
 export const celsius = {
@@ -24,10 +26,22 @@ export const fahrenheit = {
   ]),
 };
 
-export const temperature: Map<string, Unit> = new Map([
-  ["Celsius", celsius],
-  ["Fahrenheit", fahrenheit],
-]);
+// export const temperature: Map<string, Unit> = new Map([
+//   ["Celsius", celsius],
+//   ["Fahrenheit", fahrenheit],
+// ]);
+
+export const temperature: Unit[] = [
+  {
+    symbol: "°C",
+    conversions: [
+      {
+        name: "Fahrenheit",
+        formula: (celsius: number) => (celsius * 9) / 5 + 32,
+      },
+    ],
+  },
+];
 
 export const conversions: Conversion[] = [
   {
