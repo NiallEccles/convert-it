@@ -20,10 +20,18 @@ function App() {
             }
           </div>
         ))} */}
-        {conversions.map(({ name, conversions }) => (
+        {conversions.map(({ name, units }) => (
           <div key={name}>
             <button className="shadow-xl bg-blue-600 rounded-lg relative bg-blend-overlay bg-cover bg-center p-5 block sm:flex sm:flex-col justify-between md:justify-end h-auto md:h-18 ease-in-out duration-300 hover:scale-105 hover:ease-in-out hover:duration-300 focus:outline-none focus:ring-4 focus:ring-blue-600 ring-offset-2">
               <h2 className="text-white text-3xl font-bold">{name}</h2>
+              {
+                units.map(({symbol}) => (
+                  <div>
+                    {/* <h3>{JSON.stringify(symbol)}</h3> */}
+                    <h3>{JSON.stringify(conversions)}</h3>
+                  </div>
+                ))
+              }
             </button>
           </div>
         ))}

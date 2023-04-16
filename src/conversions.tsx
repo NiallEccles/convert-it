@@ -1,7 +1,7 @@
 export interface Conversion {
   name: string;
 //   conversions: Map<string, Unit>;
-  conversions: Unit[];
+  units: Unit[];
 }
 
 export interface Unit {
@@ -46,6 +46,6 @@ export const temperature: Unit[] = [
 export const conversions: Conversion[] = [
   {
     name: "Temperature",
-    conversions: temperature,
+    units: temperature,
   },
 ];
