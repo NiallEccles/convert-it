@@ -7,7 +7,8 @@ export interface Conversion {
 export interface Unit {
   symbol: string;
   //   conversions: Map<string, Function>;
-  conversions: { name: string; formula: Function }[];
+  name: string;
+  to: { name: string; formula: Function }[];
 }
 
 export const celsius = {
@@ -33,8 +34,9 @@ export const fahrenheit = {
 
 export const temperature: Unit[] = [
   {
+    name: "Celsius",
     symbol: "°C",
-    conversions: [
+    to: [
       {
         name: "Fahrenheit",
         formula: (celsius: number) => (celsius * 9) / 5 + 32,
