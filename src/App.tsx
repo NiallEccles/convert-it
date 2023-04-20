@@ -8,10 +8,6 @@ function App() {
   const [currentInput, setCurrentInput] = useState(0);
 
   useEffect(() => {
-    // console.log({currentConversion, currentUnit, currentInput});
-  }, [currentConversion, currentUnit, currentInput]);
-
-  useEffect(() => {
     setCurrentConversion(conversions[0]);
   }, []);
 
