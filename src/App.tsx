@@ -8,8 +8,12 @@ function App() {
   const [currentInput, setCurrentInput] = useState(0);
 
   useEffect(() => {
-    console.log({currentConversion, currentUnit, currentInput});
+    // console.log({currentConversion, currentUnit, currentInput});
   }, [currentConversion, currentUnit, currentInput]);
+
+  useEffect(() => {
+    setCurrentConversion(conversions[0]);
+  }, []);
 
   return (
     <div className="">
@@ -39,18 +43,27 @@ function App() {
         ))}
       </div>
       {currentConversion &&
-        currentConversion.units.map(({ name, icon, symbol, to }) => (
-          <div>
+        currentConversion.units.map(({ name, icon, symbol, to }, index) => (
+          <div key={index}>
             {/* <h3>{JSON.stringify(symbol)}</h3> */}
             <h3>{name}</h3>
-            <input type="text" onChange={(e)=>setCurrentInput(Number(e.target.value))} />
+            <input
+              type="text"
+              onChange={(e) => setCurrentInput(Number(e.target.value))}
+            />
             {/* <span className="material-symbols-outlined">{icon}</span> */}
-            <select onChange={(e)=>setCurrentUnit(Number(e.target.value))}>
+            <select onChange={(e) => setCurrentUnit(Number(e.target.value))}>
               {to.map((unit, index) => (
-                <option value={index}>{unit.name}</option>
+                <option key={`${unit}-${index}`} value={index}>
+                  {unit.name}
+                </option>
               ))}
             </select>
-            <h3>{to[currentUnit].formula(currentInput)}</h3>
+            {to[Number(currentUnit)] && (
+              <h3 className="inline">
+                {to[Number(currentUnit)].formula(currentInput)}
+              </h3>
+            )}
             <br />
             <br />
           </div>
